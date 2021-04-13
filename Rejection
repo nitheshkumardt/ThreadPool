@@ -1,0 +1,19 @@
+package com.Assignment2.ThreadPool;
+
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import static java.lang.Thread.sleep;
+
+public class RejectionHandler implements RejectedExecutionHandler {
+    @Override
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+        System.out.println(r+"is Rejected");
+        try{
+            sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        executor.execute(r);
+    }
+}
